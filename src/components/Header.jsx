@@ -1,5 +1,6 @@
 import React from "react";
 import "./css/header.css";
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
@@ -30,34 +31,34 @@ function Header() {
         >
           <ul className="navbar-nav me-5 mb-lg-0 ">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="/">
+              <Link className="nav-link active" aria-current="page" to="/">
                 Inicio
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/about">
-                About
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/about">
+              <Link className="nav-link" to="/hoteles">
                 Hoteles
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/about">
+              <Link className="nav-link" to="/about">
                 Nosotros
-              </a>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/contact">
+                Contactar
+              </Link>
             </li>
           </ul>
           <div className="align-items-center d-flex">
             <form className="d-flex" role="search">
-              <button className="btn btn-outline-success me-2" type="submit">
+              <Link className="btn btn-outline-success me-2" to="signin">
                 Login
-              </button>
-              <button className="btn btn-outline-primary" type="submit">
-                Search
-              </button>
+              </Link>
+              <Link className="btn btn-outline-primary" to="register">
+                Registrar
+              </Link>
             </form>
           </div>
         </div>

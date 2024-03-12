@@ -1,6 +1,5 @@
 import React from 'react'
 import Card from './Card.jsx'
-import Navbar from './Navbar.jsx';
 
 function Inicio() {
   const room1 = 'https://source.unsplash.com/random/?hotel';

@@ -3,20 +3,25 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import Home from "./components/Home";
+
 import Header from "./components/Header";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
+import { About, Contact, Hoteles, Register, Signin } from "./pages";
 
 function App() {
   return (
-    <>
+    <BrowserRouter>
       <Header />
-      <Router>
         <Routes>
-          <Route index="/" element={<Home />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/hoteles" element={<Hoteles />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/signin" element={<Signin />} />
+          <Route path="/register" element={<Register />} />
+        
         </Routes>
-      </Router>
-    </>
+    </BrowserRouter>
   );
 }
-
 export default App;
