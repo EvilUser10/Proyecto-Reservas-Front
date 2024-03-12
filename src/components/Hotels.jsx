@@ -23,7 +23,7 @@ function Hotels() {
         title={hotel.name}
         img = {hotel.fotos[0]}
         description={hotel.description}
-        link={hotel._links.self.href}
+        link={`${hotel.city}/${hotel.id}`}
         />
       ))}
     </div>

@@ -1,23 +1,24 @@
 import React, { useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom';
+import { getHotel } from "../services/HotelService";
 
 
-function Hotel(city, id) {
+function Hotel() {
   const { city, id } = useParams();
   const [hotel, setHotel] = useState(null);
 
   useEffect(() => {
     const fetchHotel = async () => {
       try {
-        const response = await getHotel(hotelId);
-        setHotel(response.data); 
+        const response = await getHotel(city, id);
+        setHotel(response.data); // Suponiendo que la respuesta contiene los detalles del hotel en formato JSON
       } catch (error) {
         console.error('Error fetching hotel:', error);
       }
     };
 
     fetchHotel();
-  }, [hotelId]);
+  }, [city, id]);
   return (
     <div>
     {hotel ? (
