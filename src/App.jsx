@@ -1,25 +1,24 @@
-import { useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-
-import "./App.css";
-
-import Home from "./components/Home";
-
-import Hotels from "./components/Hotels";
-import Header from "./components/Header";
-import Hotel from "./components/Hotel";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import './App.css'
+import Home from './components/Home'
+import About from './components/About'
+import Login from './components/Login'
+import Hotels from './components/Hotels';
+import Navbar from './components/Navbar';
 
 function App() {
   return (
     <BrowserRouter>
-      <Header />
+    <Navbar/>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/hoteles" element={<Hotels />} />
-        <Route path="/hotels/:city/:id" element={<Hotel />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/hotels" element={<Hotels />} />
+        <Route path="/about" element={<About />} />
       </Routes>
     </BrowserRouter>
-  );
+  )
 }
 
 export default App;
