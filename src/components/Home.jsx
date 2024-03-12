@@ -6,7 +6,7 @@ function Inicio() {
   const room1 = 'https://source.unsplash.com/random/?hotel';
   return (
     <>
-      <div className='row row-cols-1 row-cols-md-3 g-4'>
+      <div className='row row-cols-1 row-cols-md-3 g-4 px-4'>
         <Card
           title="Habitacion"
           img={room1}
