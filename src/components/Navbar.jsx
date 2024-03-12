@@ -1,19 +1,22 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
+import logo from '../assets/logo.png';
 
 function Navbar() {
   return (
     <>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light mb-2">
+        <span className="navbar-brand px-2" style={{ maxWidth: 'fit-content' }}>
+          <img src={logo} alt="Hotel" style={{ width: '60px' }} />
+        </span>
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="#">Features</a>
-            <a class="nav-item nav-link" href="#">Pricing</a>
-            <a class="nav-item nav-link disabled" href="#">Disabled</a>
+        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div className="navbar-nav">
+            <Link className="nav-item nav-link active" to="/">Inicio</Link>
+            <Link className="nav-item nav-link active" to="/hotels">Hoteles</Link>
+            <Link className="nav-item nav-link active" to="/about">Sobre Nosotros</Link>
           </div>
         </div>
       </nav>

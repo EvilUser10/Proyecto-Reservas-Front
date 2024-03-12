@@ -1,9 +1,13 @@
 import React from 'react'
+import Navbar from './Navbar'
 
 function Hotels() {
   return (
-    <div>Hotels</div>
+    <>
+      <Navbar />
+      <div>Hotels</div>
+    </>
   )
 }
 
-export default Hotels
+export default Hotels;
