@@ -1,18 +1,19 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../styles/header.css";
 
 function Header() {
   return (
     <nav className="navbar py-0 navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
+        <Link className="navbar-brand" to="/">
           <img
             src="./logo.jpeg"
             alt="Logo"
             width="64"
             className="d-inline-block align-text-top"
           />
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -30,35 +31,33 @@ function Header() {
         >
           <ul className="navbar-nav me-5 mb-lg-0 ">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="/">
+              <Link className="nav-link active" aria-current="page" to="/">
                 Inicio
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/about">
+              <Link className="nav-link" to="/about">
                 About
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/about">
+              <Link className="nav-link" to="/hoteles">
                 Hoteles
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/about">
-                Nosotros
-              </a>
+              <Link className="nav-link" to="/contact">
+                Contacto
+              </Link>
             </li>
           </ul>
           <div className="align-items-center d-flex">
-            <form className="d-flex" role="search">
-              <button className="btn btn-outline-success me-2" type="submit">
+              <Link className="btn btn-outline-success me-2" to="login">
                 Login
-              </button>
-              <button className="btn btn-outline-primary" type="submit">
+              </Link>
+              <Link className="btn btn-outline-primary" to="register">
                 Search
-              </button>
-            </form>
+              </Link>
           </div>
         </div>
       </div>

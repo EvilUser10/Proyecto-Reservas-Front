@@ -15,16 +15,20 @@ function Hotels() {
       });
   }, []);
   return (
-    <div className="row row-cols-1 row-cols-md-3 g-4">
+    <div className="container-fluid">
+      <div className="row row-cols-1 row-cols-md-3 g-4">
       {hotels.map((hotel) => (
         <Card 
         key={hotel.id}
         title={hotel.name}
         img = {hotel.fotos[0]}
         description={hotel.description}
+        link={hotel._links.self.href}
         />
       ))}
     </div>
+    </div>
+    
   );
 }
 

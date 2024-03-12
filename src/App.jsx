@@ -4,9 +4,10 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 
 import Home from "./components/Home";
-import Navbar from "./components/Navbar";
+
 import Hotels from "./components/Hotels";
 import Header from "./components/Header";
+import Hotel from "./components/Hotel";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/hoteles" element={<Hotels />} />
+        <Route path="/hotels/:city/:id" element={<Hotel />} />
       </Routes>
     </BrowserRouter>
   );
