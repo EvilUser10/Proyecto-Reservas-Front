@@ -6,11 +6,12 @@ import Login from "./components/Login";
 import Hotels from "./components/Hotels";
 import Navbar from "./components/Navbar";
 import Hotel from "./components/Hotel";
+import Header from "./components/Header";
 
 function App() {
   return (
     <BrowserRouter>
-      <header />
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
