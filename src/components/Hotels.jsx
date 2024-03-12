@@ -4,7 +4,6 @@ import Navbar from './Navbar'
 function Hotels() {
   return (
     <>
-      <Navbar />
       <div>Hotels</div>
     </>
   )
