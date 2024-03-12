@@ -1,21 +1,22 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 import "./App.css";
+
 import Home from "./components/Home";
+import Navbar from "./components/Navbar";
+import Hotels from "./components/Hotels";
 import Header from "./components/Header";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <>
+    <BrowserRouter>
       <Header />
-      <Router>
-        <Routes>
-          <Route index="/" element={<Home />} />
-        </Routes>
-      </Router>
-    </>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/hoteles" element={<Hotels />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
