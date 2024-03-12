@@ -1,7 +1,7 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import { getHotel } from "../services/HotelService";
-
+import Carousel from './Carousel';
 
 function Hotel() {
   const { city, id } = useParams();
@@ -21,16 +21,21 @@ function Hotel() {
   }, [city, id]);
   return (
     <div>
-    {hotel ? (
-      <div>
-        <h2>{hotel.name}</h2>
-        <p>{hotel.description}</p>
-       
-      </div>
-    ) : (
-      <p>Cargando hotel...</p>
-    )}
-  </div>
+      {hotel ? (
+        <div>
+          <h2>{hotel.name}</h2>
+          <h5>{hotel.address}</h5>
+          <p>{hotel.description}</p>
+          <section>
+            <button className="btn btn-success">Reserva el hotel</button>
+          </section>
+          <Carousel photos={hotel.fotos} />
+          <p>Valoración del hotel: {hotel.rating}</p>
+        </div>
+      ) : (
+        <p>Cargando hotel...</p>
+      )}
+    </div>
   )
 }
 

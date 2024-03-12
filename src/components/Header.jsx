@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import logo from "../assets/logo.png"
 import "../styles/header.css";
 
 function Header() {
@@ -8,10 +9,10 @@ function Header() {
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
           <img
-            src="./logo.jpeg"
+            src={logo}
             alt="Logo"
             width="64"
-            className="d-inline-block align-text-top"
+            className="d-inline-block align-text-top logo"
           />
         </Link>
         <button
@@ -53,10 +54,10 @@ function Header() {
           </ul>
           <div className="align-items-center d-flex">
               <Link className="btn btn-outline-success me-2" to="login">
-                Login
+                Iniciar Sesion
               </Link>
               <Link className="btn btn-outline-primary" to="register">
-                Search
+                Registrarse
               </Link>
           </div>
         </div>
