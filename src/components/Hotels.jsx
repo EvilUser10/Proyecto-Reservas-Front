@@ -18,12 +18,10 @@ function Hotels() {
     <div className="container-fluid my-4">
       <div className="row row-cols-1 row-cols-md-3 g-4">
       {hotels.map((hotel) => (
+        
         <Card 
         key={hotel.id}
-        title={hotel.name}
-        img = {hotel.fotos[0]}
-        description={hotel.description}
-        link={`${hotel.city}/${hotel.id}`}
+        hotel={hotel}
         />
       ))}
     </div>
