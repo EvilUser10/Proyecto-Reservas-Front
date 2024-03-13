@@ -4,9 +4,9 @@ import Home from "./components/Home";
 import About from "./components/About";
 import Login from "./components/Login";
 import Hotels from "./components/Hotels";
-import Navbar from "./components/Navbar";
 import Hotel from "./components/Hotel";
 import Header from "./components/Header";
+import Register from "./components/Register";
 
 function App() {
   return (
@@ -16,6 +16,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
+        <Route path="register" element={<Register />} />
         <Route path="/hotels" element={<Hotels />} />
         <Route path="/about" element={<About />} />
         <Route path="/hotels/:city/:id" element={<Hotel />} />

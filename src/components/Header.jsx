@@ -46,11 +46,6 @@ function Header() {
                 Hoteles
               </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/contact">
-                Contacto
-              </Link>
-            </li>
           </ul>
           <div className="align-items-center d-flex">
               <Link className="btn btn-outline-success me-2" to="login">

@@ -1,10 +1,35 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Card from './Card.jsx'
-import Hotels from './Hotels.jsx'
+import { listHotels } from "../services/HotelService";
 
 function Inicio() {
+  const [hotels, setHotels] = useState([]);
+  useEffect(() => {
+    const fetchHotels = async () => {
+      try {
+        const response = await listHotels();
+        setHotels(response.data._embedded.hotelList);
+      } catch (error) {
+        console.error('Error fetching hotels:', error);
+      }
+    };
+
+    fetchHotels();
+  }, []);
+
   return (
-      <Hotels />
+    <>
+      <div className="container-fluid my-4">
+        <div className="row row-cols-1 row-cols-md-3 g-4">
+          {hotels.map((hotel) => (
+            <Card
+              key={hotel.id}
+              hotel={hotel}
+            />
+          ))}
+        </div>
+      </div>
+    </>
   )
 }
 

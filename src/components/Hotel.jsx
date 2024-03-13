@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import { getHotel } from "../services/HotelService";
 import Carousel from './Carousel';
+import MapInsert from './MapInsert'
 
 function Hotel() {
   const { city, id } = useParams();
@@ -19,18 +20,27 @@ function Hotel() {
 
     fetchHotel();
   }, [city, id]);
+
+
   return (
     <div>
       {hotel ? (
         <div>
+          <div>
+            <MapInsert latitud={hotel.latitud} longitud={hotel.longitud} />
+            <Carousel photos={hotel.fotos} />
+            <section>
+              <form method="post">
+
+              </form>
+              <button className="btn btn-success">Reserva el hotel</button>
+            </section>
+          </div>
+          <p>Valoración del hotel: {hotel.rating}</p>
+
           <h2>{hotel.name}</h2>
           <h5>{hotel.address}</h5>
           <p>{hotel.description}</p>
-          <section>
-            <button className="btn btn-success">Reserva el hotel</button>
-          </section>
-          <Carousel photos={hotel.fotos} />
-          <p>Valoración del hotel: {hotel.rating}</p>
         </div>
       ) : (
         <p>Cargando hotel...</p>

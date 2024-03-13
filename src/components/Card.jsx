@@ -21,7 +21,7 @@ function Card({ hotel }) {
               <p>Price: {randomRoom.price.toFixed(2)} €</p>
 
               <a
-                href={`hotels/${hotel.city}/${randomRoom.id}`}
+                href={`hotels/${hotel.city}/${hotel.id}`}
                 className="stretched-link"
               ></a>
             </div>

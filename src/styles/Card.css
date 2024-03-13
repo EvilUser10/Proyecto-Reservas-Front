@@ -1,9 +1,17 @@
 .card {
-    overflow: hidden; /* Oculta cualquier parte de la imagen que sobresalga de la tarjeta */
-  }
+  overflow: hidden;
+  /* Oculta cualquier parte de la imagen que sobresalga de la tarjeta */
+}
 
-  .card-img-top {
-    object-fit: cover; /* Ajusta la imagen para cubrir toda la tarjeta */
-    height: 400px; /* Altura fija para todas las imágenes */
-    width: 100%; /* Ancho del 100% de la tarjeta */
-  }
+.card-img-top {
+  object-fit: cover;
+  /* Ajusta la imagen para cubrir toda la tarjeta */
+  height: 400px;
+  /* Altura fija para todas las imágenes */
+  width: 100%;
+  /* Ancho del 100% de la tarjeta */
+}
+
+.mw-650px{
+  max-width: 650px;
+}
