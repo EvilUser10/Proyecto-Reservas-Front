@@ -18,7 +18,6 @@ function Hotels() {
     <div className="container-fluid my-4">
       <div className="row row-cols-1 row-cols-md-3 g-4">
       {hotels.map((hotel) => (
-        
         <Card 
         key={hotel.id}
         hotel={hotel}
