@@ -13,7 +13,7 @@ export const makeRegister = (username, password, email) => {
         'Content-Type': 'application/json'
       }
     }).then((response) => {
-      console.log(response.data);;
+      console.log(response.data);
     });
   } catch (e) {
     console.log("No se ha podido realizar el registro: " + e)
@@ -21,3 +21,24 @@ export const makeRegister = (username, password, email) => {
   }
   return true;
 }
+
+export const makeLogin = async (username, password) => {
+  const json = {
+    "username": username,
+    "password": password,
+  };
+  try {
+    const token = await axios.post(REST_API_AUTH_URL + "/login", json)
+    if (token.status >= 200 && token.status < 300) {
+      return token.data;
+    } else {
+      return null;
+    }
+  } catch(e){
+    console.log("Hay un error: " + e);
+    return null;
+  }
+}
+
+
+
