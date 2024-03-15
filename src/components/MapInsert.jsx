@@ -1,13 +1,14 @@
 import React from 'react'
 import { Map, Marker } from 'pigeon-maps';
+import { auto } from '@popperjs/core';
 
-function MapInsert({ latitud, longitud }) {
+function MapInsert({ latitud, longitud}) {
   return (
-    <section>
-      <Map height={300} defaultCenter={[latitud, longitud]} defaultZoom={15}>
+    <>
+      <Map height={500} defaultCenter={[latitud, longitud]} defaultZoom={15}>
         <Marker width={50} anchor={[latitud, longitud]} />
       </Map>
-    </section>
+    </>
   )
 }
 

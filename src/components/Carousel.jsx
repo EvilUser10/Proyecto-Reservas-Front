@@ -4,7 +4,7 @@ import '../styles/Carousel.css'
 function Carousel({ photos }) {
   return (
     <>
-      <div id="carouselExampleIndicators" className="carousel slide" style={{width:'800px', maxWidth: '800px', maxHeight: '500px', margin: '0 auto' }}>
+      <div id="carouselExampleIndicators" className="carousel slide" style={{width:'auto', maxWidth: '800px', maxHeight: '500px', margin: '0 auto' }}>
         <div className="carousel-inner">
           {photos.map((photo, index) => (
             index === 0 ? (

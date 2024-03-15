@@ -7,6 +7,7 @@ import Hotels from "./components/Hotels";
 import Hotel from "./components/Hotel";
 import Header from "./components/Header";
 import Register from "./components/Register";
+import Footer from "./components/Footer";
 import { useState, useContext } from "react";
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/hotels/:city/:id" element={<Hotel />} />
       </Routes>
+      {/* <Footer /> */}
     </BrowserRouter>
   );
 }
