@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png"
 import "../styles/header.css";
+import HeaderProfile from "./HeaderProfile";
+
 
 function Header() {
+  const [refreshButtons, setRefreshButtons] = useState(false);
   return (
     <nav className="navbar py-0 navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
@@ -30,31 +33,24 @@ function Header() {
           className="collapse navbar-collapse justify-content-end align-items-stretch"
           id="navbarSupportedContent"
         >
-          <ul className="navbar-nav me-5 mb-lg-0 ">
+          <ul className="navbar-nav me-3 mb-lg-0 ">
             <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to="/">
+              <Link className="nav-link active" onClick={setRefreshButtons} aria-current="page" to="/">
                 Inicio
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/about">
+              <Link className="nav-link" onClick={setRefreshButtons} to="/about">
                 About
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/hotels">
+              <Link className="nav-link" onClick={setRefreshButtons} to="/hotels">
                 Hoteles
               </Link>
             </li>
           </ul>
-          <div className="align-items-center d-flex">
-              <Link className="btn btn-outline-success me-2" to="login">
-                Iniciar Sesion
-              </Link>
-              <Link className="btn btn-outline-primary" to="register">
-                Registrarse
-              </Link>
-          </div>
+          <HeaderProfile />
         </div>
       </div>
     </nav>

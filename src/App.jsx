@@ -7,11 +7,15 @@ import Hotels from "./components/Hotels";
 import Hotel from "./components/Hotel";
 import Header from "./components/Header";
 import Register from "./components/Register";
+import { useState, useContext } from "react";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(true); // Estado que indica si el usuario está autenticado
+
+
   return (
     <BrowserRouter>
-      <Header />
+        <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />

@@ -1,29 +1,36 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { makeLogin } from '../services/AuthService'
-import  { Navigate, useNavigate } from 'react-router-dom'
+import {useNavigate } from 'react-router-dom'
 
-function Login() {
-  const [token, setToken] = useState('');
+function Login({iniciarSesion}) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loginMessage, setLoginMessage] = useState('');
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const token = sessionStorage.getItem('token');
+    if (token) {
+      // Si hay un token, redirigir al usuario a la página de perfil
+      navigate("/profile");
+      
+    }
+  }, [navigate]);
+
   const handleSubmit = async (event) => {
     event.preventDefault()
+    //Comprueba que el campo de usuario y contraseña no esten vacíos
     if (username.length > 0 && password.length > 0) {
       const information = await makeLogin(username, password);
       if (information == null) {
         setLoginMessage('Las credenciales son incorrectas.')
       } else {
+        //Recarga la pagina para actualizar el estado de la barra de navegacion
         sessionStorage.setItem('token', information.token)
-        return navigate("/profile")
+        navigate("/profile")
+        window.location.reload();
       }
-      //setLoginMessage("Las credenciales para iniciar sesión no son validas")
     }
-    // } else {
-    //   setLoginMessage("Las credenciales para iniciar sesión no pueden ser vacías")
-    // }
     setUsername('');
     setPassword('');
   }
@@ -31,9 +38,7 @@ function Login() {
 
   return (
     <>
-
       <div className="container">
-
         <div className="row">
           <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
             <div className="card border-0 shadow rounded-3 my-5">
