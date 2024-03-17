@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import profile from "../assets/images/profile.png";
 import { useNavigate } from 'react-router-dom'
 import { jwtDecode } from 'jwt-decode';
+import { useAuth } from './auth/AuthContext';
 
 
 function HeaderProfile({ buttonsState }) {
     const navigate = useNavigate();
+    const {handleLogout, isAuthenticated} = useAuth();
 
     //Comprueba si el jwt ha expirado
     function checkJwtExpirateDate() {
@@ -26,9 +28,8 @@ function HeaderProfile({ buttonsState }) {
 
     //Borra el token y recarga la página para actualizar la barra de navegación.
     const deleteTokenStorage = () => {
-        sessionStorage.removeItem("token");
+        handleLogout();
         navigate("/")
-        window.location.reload();
     }
 
 
@@ -39,7 +40,7 @@ function HeaderProfile({ buttonsState }) {
         return (
             <div className="align-items-center d-flex">
                 <Link to={"profile"}><img src={profile} className="logo" alt="Profile Picture" /></Link>
-                <Link to={"/"}></Link><button type="button" onClick={deleteTokenStorage} class="btn btn-danger">Cerrar Sesión</button>
+                <Link to={"/"}></Link><button type="button" onClick={deleteTokenStorage} className="btn btn-danger">Cerrar Sesión</button>
             </div>
         )
     }

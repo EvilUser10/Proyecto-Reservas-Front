@@ -35,7 +35,6 @@ export const makeLogin = async (username, password) => {
       return null;
     }
   } catch(e){
-    console.log("Hay un error: " + e);
     return null;
   }
 }

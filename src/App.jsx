@@ -7,25 +7,26 @@ import Hotels from "./components/Hotels";
 import Hotel from "./components/Hotel";
 import Header from "./components/Header";
 import Register from "./components/Register";
-import { useState, useContext } from "react";
+import Profile from "./pages/Profile";
+import { AuthProvider } from "./components/auth/AuthContext";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true); // Estado que indica si el usuario está autenticado
-
-
   return (
-    <BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter>
         <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="register" element={<Register />} />
-        <Route path="/hotels" element={<Hotels />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/hotels/:city/:id" element={<Hotel />} />
-      </Routes>
-    </BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="register" element={<Register />} />
+          <Route path="/hotels" element={<Hotels />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/hotels/:city/:id" element={<Hotel />} />
+          <Route path="/profile" element={<Profile />} />
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 

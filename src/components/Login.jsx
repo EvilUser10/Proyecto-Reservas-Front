@@ -1,8 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { makeLogin } from '../services/AuthService'
-import {useNavigate } from 'react-router-dom'
+import {useLocation, useNavigate } from 'react-router-dom'
+import { useAuth } from './auth/AuthContext';
 
 function Login({iniciarSesion}) {
+
+  const {handleLogin, isAuthenticated} = useAuth();
+  //Use React hooks (useLocation) to redirect to the path requested.
+  const location = useLocation();
+  //get the url to redirect to
+  const redirectUrl = location.state?.path || "/";
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loginMessage, setLoginMessage] = useState('');
@@ -11,9 +19,8 @@ function Login({iniciarSesion}) {
   useEffect(() => {
     const token = sessionStorage.getItem('token');
     if (token) {
-      // Si hay un token, redirigir al usuario a la página de perfil
-      navigate("/profile");
-      
+      // Si hay un token, el usuario si queda el la pagina de entrada
+      navigate(redirectUrl, { replace: true });
     }
   }, [navigate]);
 
@@ -25,10 +32,10 @@ function Login({iniciarSesion}) {
       if (information == null) {
         setLoginMessage('Las credenciales son incorrectas.')
       } else {
-        //Recarga la pagina para actualizar el estado de la barra de navegacion
-        sessionStorage.setItem('token', information.token)
-        navigate("/profile")
-        window.location.reload();
+        //Usar el auth para controlar el inicio de sesion
+        handleLogin(information.token);
+        //Devolver el usuario a su pagina de entrada.
+			  navigate(redirectUrl, { replace: true });
       }
     }
     setUsername('');
