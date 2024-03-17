@@ -46,13 +46,6 @@ function About() {
             "Trabajamos en estrecha colaboración con organizaciones locales para apoyar iniciativas sociales y ambientales que beneficien a nuestros " +
             "clientes y al entorno que nos rodea."}
         img={compromise} />
-
-
-      <footer className="bg-light pb-5">
-        <div className="container text-center">
-          <p className="font-italic text-muted mb-0">&copy; Copyrights Company.com All rights reserved.</p>
-        </div>
-      </footer>
     </>
   )
 }

@@ -19,7 +19,8 @@ function Inicio() {
 
   return (
     <>
-      <div className="container-fluid my-4">
+      <div className="container-fluid my-2">
+        <h1>Tus hoteles favoritos, al alcance de tu mano</h1>
         <div className="row row-cols-1 row-cols-md-3 g-4">
           {hotels.map((hotel) => (
             <Card

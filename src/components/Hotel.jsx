@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { getHotel } from "../services/HotelService";
 import Carousel from './Carousel';
 import MapInsert from './MapInsert'
+import Booking from './Booking';
 
 function Hotel() {
   const { city, id } = useParams();
@@ -21,31 +22,47 @@ function Hotel() {
     fetchHotel();
   }, [city, id]);
 
-
   return (
-    <div>
-      {hotel ? (
-        <div>
-          <div>
-            <MapInsert latitud={hotel.latitud} longitud={hotel.longitud} />
-            <Carousel photos={hotel.fotos} />
-            <section>
-              <form method="post">
-
-              </form>
-              <button className="btn btn-success">Reserva el hotel</button>
-            </section>
+    <>
+      <div>
+        {hotel ? (
+          <>
+          <div className='container-fluid pt-3'>
+            <h2>{hotel.name}</h2>
+            <div className="row">
+              <section className='col-xxl-6'>
+                <Carousel photos={hotel.fotos} />
+              </section>
+              <section className='col-xxl-6 pl-3'>
+                <MapInsert latitud={hotel.latitud} longitud={hotel.longitud} />
+              </section>
+            </div>
           </div>
-          <p>Valoración del hotel: {hotel.rating}</p>
-
-          <h2>{hotel.name}</h2>
-          <h5>{hotel.address}</h5>
-          <p>{hotel.description}</p>
+          <div>
+          <div className='container-fluid pt-3'>
+            <div className='row'>
+              <div className='col-xxl-6'>
+                <section className=''>
+                   <h5>{hotel.address}</h5>
+                  <div className='d-flex justify-content-center'>
+                    <p className='mw-420px'>{hotel.description}</p>
+                  </div>
+                </section>
+              </div>
+              <div className='col-xxl-6'>
+                <section className='d-flex justify-content-center py-2'>
+                  <Booking id={hotel.id}/>
+                </section>
+              </div>
+            </div>
+          </div>
         </div>
-      ) : (
-        <p>Cargando hotel...</p>
-      )}
-    </div>
+        </>
+        ) : (
+          <p>Cargando hotel...</p>
+        )}
+      </div>
+    </>
   )
 }
 
