@@ -9,6 +9,7 @@ import Header from "./components/Header";
 import Register from "./components/Register";
 import Profile from "./pages/Profile";
 import { AuthProvider } from "./components/auth/AuthContext";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -16,14 +17,18 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
+          {/* Publicas */}
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="/hotels" element={<Hotels />} />
-          <Route path="/about" element={<About />} />
           <Route path="/hotels/:city/:id" element={<Hotel />} />
-          <Route path="/profile" element={<Profile />} />
+
+          {/* Privadas */}
+          {/* <Route element={<ProtectedRoute/>}> */}
+            <Route path="/profile" element={<Profile />} />
+          {/* </Route> */}
         </Routes>
       </BrowserRouter>
     </AuthProvider>

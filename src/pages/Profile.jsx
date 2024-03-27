@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import {
-  deleteUser,
-  getUser
-} from "../services/UserService";
+import { deleteUser, getUser } from "../services/UserService";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
+import { useAuth } from "../components/auth/AuthContext";
+import { candelBooking } from "../services/BookingService";
 
 const Profile = () => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const [message, setMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -19,10 +19,21 @@ const Profile = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
+        /*Antes de hacer la llamada al api verificamos si hay un token.
+         * No es la mejor forma, pero por ahora lo hacemos así.
+         * la mejor forma seria crea un variable global dentro de AutContext y exportarlo al resto de los componentes.
+         */
+        if (!token) {
+          navigate("/login");
+        }
         const userData = await getUser(userId, token);
+        console.log(userData);
+        //Aqui en vez de establecer el usuario aqui, se establecera en Aluthprovides.
+        //En vez de establecer los valores localmente en un componente deberia hacerlo globalmente.
         setUser(userData);
+        if (userData) setIsAuthenticated(true);
       } catch (error) {
-		setErrorMessage(error?.data)
+        setErrorMessage(error?.data);
         console.error(error);
       }
     };
@@ -42,6 +53,22 @@ const Profile = () => {
           sessionStorage.removeItem("userRole");
           navigate("/");
           window.location.reload();
+        })
+        .catch((error) => {
+          setErrorMessage(error.data);
+        });
+    }
+  };
+
+  const handleCancelBooking = async (bookingId) => {
+    const confirmed = window.confirm(
+      "Estas seguro que quieres cancela la reserva? Esta acción no se podrá deshacer."
+    );
+    if (confirmed) {
+      await candelBooking(bookingId)
+        .then((response) => {
+          console.log(response);
+          setMessage(response.data);
         })
         .catch((error) => {
           setErrorMessage(error.data);
@@ -117,33 +144,52 @@ const Profile = () => {
 
               <h4 className="card-title text-center">Booking History</h4>
 
-              {user.bookings  ? (
+              {user.bookings ? (
                 <table className="table table-bordered table-hover shadow">
-                    <thead>
-                        <tr>
-                            <th scope="col">Booking ID</th>
-                            <th scope="col">Start Date</th>
-                            <th scope="col">Finish Date</th>
-                            <th scope="col">Confirmation Code</th>
-                            <th scope="col">Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {user.bookings.map((booking, index) => (
-                            <tr key={index}>
-                                <td>{booking.id}</td>
-								<td>{moment(booking.startDate).subtract(1, "month").format("MMM Do, YYYY")}</td>
-								<td>{moment(booking.finishDate).subtract(1, "month").format("MMM Do, YYYY")}</td>
+                  <thead>
+                    <tr>
+                      <th scope="col">ID de Reserva</th>
+                      <th scope="col">Fecha de entrada</th>
+                      <th scope="col">Fecha de salida</th>
+                      <th scope="col">Código de reserva</th>
+                      <th scope="col">Estado</th>
+                      <th scope="col">Accion</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {user.bookings.map((booking, index) => (
+                      <tr key={index}>
+                        <td>{booking.id}</td>
+                        <td>
+                          {moment(booking.startDate)
+                            .subtract(1, "month")
+                            .format("MMM Do, YYYY")}
+                        </td>
+                        <td>
+                          {moment(booking.finishDate)
+                            .subtract(1, "month")
+                            .format("MMM Do, YYYY")}
+                        </td>
 
-                                <td>{booking.bookingConfirmationCode}</td>
-                                <td className="text-success">On-going</td>
-                            </tr>
-                        ))}
-                    </tbody>
+                        <td>{booking.bookingConfirmationCode}</td>
+                        <td className="text-success">{booking.state}</td>
+                        <td>
+                          <div className="mx-2">
+                            <button
+                              className="btn btn-danger btn-sm"
+                              onClick={() => handleCancelBooking(booking.id)}
+                            >
+                              Cancelar
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
                 </table>
-            ) : (
+              ) : (
                 <p>You have not made any bookings yet.</p>
-            )} 
+              )}
 
               <div className="d-flex justify-content-center">
                 <div className="mx-2">

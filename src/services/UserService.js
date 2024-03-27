@@ -1,19 +1,6 @@
-import axios from "axios"
-
-export const api = axios.create({
-	baseURL: "http://localhost:8080"
-})
-
-export const getHeader = () => {
-	const token = sessionStorage.getItem("token")
-	return {
-		Authorization: `Bearer ${token}`,
-		"Content-Type": "application/json"
-	}
-}
-
+import { api, getHeader } from "./ApiService";
 /*  This is function to get the user profile */
-export async function getUserProfile(userId, token) {
+export async function getUserProfile(userId) {
 	try {
 		const response = await api.get(`users/profile/${userId}`, {
 			headers: getHeader()
@@ -38,7 +25,7 @@ export async function deleteUser(userId) {
 }
 
 /* This is the function to get a single user */
-export async function getUser(userId, token) {
+export async function getUser(userId) {
 	try {
 		const response = await api.get(`/api/users/user/${userId}`, {
 			headers: getHeader()
@@ -50,7 +37,7 @@ export async function getUser(userId, token) {
 }
 
 /* This is the function to get user bookings by the user id */
-export async function getBookingsByUserId(userId, token) {
+export async function getBookingsByUserId(userId) {
 	try {
 		const response = await api.get(`/bookings/user/${userId}/bookings`, {
 			headers: getHeader()
@@ -61,3 +48,5 @@ export async function getBookingsByUserId(userId, token) {
 		throw new Error("Failed to fetch bookings")
 	}
 }
+
+

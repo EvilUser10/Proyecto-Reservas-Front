@@ -34,8 +34,8 @@ function Login({iniciarSesion}) {
       } else {
         //Usar el auth para controlar el inicio de sesion
         handleLogin(information.token);
-        //Devolver el usuario a su pagina de entrada.
-			  navigate(redirectUrl, { replace: true });
+			  //navigate(redirectUrl, { replace: true }); //Devolver el usuario a su pagina de entrada.
+        navigate("/profile"); //O bien si se priefiere al profile
       }
     }
     setUsername('');
