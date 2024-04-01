@@ -2,10 +2,10 @@ import { api, getHeader } from "./ApiService";
 /*  This is function to get the user profile */
 export async function getUserProfile(userId) {
 	try {
+		
 		const response = await api.get(`users/profile/${userId}`, {
 			headers: getHeader()
 		})
-		console.log(response.data);
 		return response.data
 	} catch (error) {
 		throw error
@@ -27,7 +27,7 @@ export async function deleteUser(userId) {
 /* This is the function to get a single user */
 export async function getUser(userId) {
 	try {
-		const response = await api.get(`/api/users/user/${userId}`, {
+		const response = await api.get(`/api/users/${userId}`, {
 			headers: getHeader()
 		})
 		return response.data

@@ -11,9 +11,16 @@ function Booking({ id }) {
 
   const submitBooking = (event) => {
     event.preventDefault()
+    const bookingModel = {
+      startDate: arrive,
+      finishDate: comingOut,
+      roomId: 10//cambiar el roomId para que sea dinamico
+    }
+    
     if (arrive.length > 0 && comingOut.length > 0) {
-      console.log(console.log(makeRegister(id)))
-      if (makeRegister(id).status == 200) {
+      const response =  makeRegister(id, bookingModel);
+      //console.log(console.log(makeRegister(id)))
+      if (response) {
         setBookingMessage("Se ha realizado la reserva satisfactoriamente.")
       }
       else {
