@@ -3,7 +3,7 @@ import App from '../App'
 import { makeRegister } from '../services/BookingService'
 
 
-function Booking({ id }) {
+function Booking({ id, roomId }) {
   const [arrive, setArrive] = useState('');
   const [comingOut, setcomingOut] = useState('');
   const [bookingMessage, setBookingMessage] = useState('');
@@ -14,22 +14,16 @@ function Booking({ id }) {
     const bookingModel = {
       startDate: arrive,
       finishDate: comingOut,
-      roomId: 10//cambiar el roomId para que sea dinamico
+      roomId: roomId//cambiar el roomId para que sea dinamico
     }
-    
+
     if (arrive.length > 0 && comingOut.length > 0) {
-      const response =  makeRegister(id, bookingModel);
-      //console.log(console.log(makeRegister(id)))
+      const response = makeRegister(id, bookingModel);
       if (response) {
         setBookingMessage("Se ha realizado la reserva satisfactoriamente.")
       }
-      else {
-        setBookingMessage("No se ha podido realizar la reserva.")
-      }
+      setBookingMessage("No se ha podido realizar la reserva, debes iniciar sesión")
     } else {
-      if(sessionStorage.getItem("token")){
-        setBookingMessage("Debes iniciar sesión para realizar la reserva.")
-      }
       setBookingMessage("Los datos no pueden ser vacíos.")
     }
   }

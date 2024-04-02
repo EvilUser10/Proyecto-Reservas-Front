@@ -4,6 +4,7 @@ import { getHotel } from "../services/HotelService";
 import Carousel from './Carousel';
 import MapInsert from './MapInsert'
 import Booking from './Booking';
+import Rooms from './Rooms';
 
 function Hotel() {
   const { city, id } = useParams();
@@ -18,9 +19,9 @@ function Hotel() {
         console.error('Error fetching hotel:', error);
       }
     };
-
     fetchHotel();
   }, [city, id]);
+
 
   return (
     <>
@@ -41,7 +42,7 @@ function Hotel() {
           <div>
           <div className='container-fluid pt-3'>
             <div className='row'>
-              <div className='col-xxl-6'>
+              <div className='col-xxl-12'>
                 <section className=''>
                    <h5>{hotel.address}</h5>
                   <div className='d-flex justify-content-center'>
@@ -49,10 +50,8 @@ function Hotel() {
                   </div>
                 </section>
               </div>
-              <div className='col-xxl-6'>
-                <section className='d-flex justify-content-center py-2'>
-                  <Booking id={hotel.id}/>
-                </section>
+              <div>
+                <Rooms id={hotel.id}/>
               </div>
             </div>
           </div>
