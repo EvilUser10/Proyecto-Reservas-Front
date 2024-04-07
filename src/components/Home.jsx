@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Card from './Card.jsx'
 import { listHotels } from "../services/HotelService";
+import Hero from './Hero.jsx';
+import Hotels from './Hotels.jsx';
 
 function Inicio() {
   const [hotels, setHotels] = useState([]);
@@ -19,8 +21,10 @@ function Inicio() {
 
   return (
     <>
-      <div className="container-fluid my-2">
-        <h1>Tus hoteles favoritos, al alcance de tu mano</h1>
+      <div className="container-fluid p-0">
+        <Hero/>
+        <Hotels  showSearchInput={false}/>
+        
         <div className="row row-cols-1 row-cols-md-3 g-4">
           {hotels.map((hotel) => (
             <Card

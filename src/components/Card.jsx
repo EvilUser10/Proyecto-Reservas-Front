@@ -15,8 +15,8 @@ function Card({ hotel }) {
         <div className="card-body text-start">
           <div className="row">
             <div className="col-8">
-              <h5 className="card-title">{hotel.name}</h5>
-              <p className="card-text">{hotel.address}</p>
+              <h5 className="card-title text-truncate">{hotel.name}</h5>
+              <p className="card-text text-truncate">{hotel.address}</p>
 
               <p>Price: {randomRoom.price.toFixed(2)} €</p>
 

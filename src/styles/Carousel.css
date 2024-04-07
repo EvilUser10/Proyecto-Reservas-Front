@@ -1,8 +1,41 @@
-
+@import url("../root.css");
 .h500px{
   height: 500px;
 }
 
 .w250px{
   width: 250px;
+}
+
+.carousel-caption {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+
+.carousel-caption input {
+  margin-bottom: 10px;
+}
+
+.carousel-caption button {
+  margin-top: 10px;
+}
+
+.carousel-indicators button {
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 18px !important;
+  height: 18px !important;
+  margin-right: 5px;
+  border-radius: 50%;
+}
+
+.carousel-indicators .active {
+  background-color:var(--primary-color-hover); 
 }

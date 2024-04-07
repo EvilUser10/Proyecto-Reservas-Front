@@ -3,7 +3,7 @@ import Card from "./Card";
 import Browser from "./Browser";
 import { listHotels, listHotelsByInput } from "../services/HotelService";
 
-function Hotels() {
+function Hotels({showSearchInput = true}) {
   const [hotels, setHotels] = useState([]);
 
   useEffect(() => {
@@ -33,16 +33,22 @@ function Hotels() {
 
   return (
     <>
-      <Browser onSearch={handleSearch} />
-      <div className="container-fluid my-4">
-        <div className="row row-cols-1 row-cols-md-3 g-4">
-          {hotels.map((hotel) => (
-            <Card
-              key={hotel.id}
-              hotel={hotel}
-            />
-          ))}
+      {showSearchInput && (
+              <Browser onSearch={handleSearch} />
+      )}
+      <div className="container-fluid px-xl-5 bg-warning">
+        <div className="container py-3 ">
+          <h1 className="py-4">Tus hoteles favoritos, al alcance de tu mano</h1>
+          <div className="row row-cols-1 row-cols-md-3 g-4">
+            {hotels.map((hotel) => (
+              <Card
+                key={hotel.id}
+                hotel={hotel}
+              />
+            ))}
+          </div>
         </div>
+        
       </div>
     </>
   );
