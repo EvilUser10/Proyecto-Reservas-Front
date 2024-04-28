@@ -47,7 +47,7 @@ const Profile = () => {
       }
     };
     fetchUser();
-  }, []);
+  }, [isAuthenticated]);
 
   const handleDeleteAccount = async () => {
     const confirmed = window.confirm(

@@ -2,6 +2,7 @@ import React, { createContext, useState, useContext , useEffect} from "react";
 import { jwtDecode } from "jwt-decode";
 import { getUser } from "../../services/UserService";
 
+
 const getTokenFromStorage = () => {
   return sessionStorage.getItem("token");
 };
@@ -9,7 +10,6 @@ const getTokenFromStorage = () => {
 const getUserFromToken = (token) => {
   if (token) {
     const decodedUser = jwtDecode(token);
-    console.log(decodedUser);
     return decodedUser;
   }
   return null;
@@ -88,7 +88,7 @@ export const AuthProvider = ({ children }) => {
       }
     };
     verifyToken();
-  }, [user]);
+  }, [isAuthenticated]);
   return (
     <AuthContext.Provider
       value={{
