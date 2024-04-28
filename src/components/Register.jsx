@@ -1,33 +1,32 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState } from "react";
 import { makeRegister } from "../services/AuthService";
 
 function Register() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   const [register, setRegister] = useState(false);
-  const [registerMessage, setRegisterMessage] = useState('');
+  const [registerMessage, setRegisterMessage] = useState("");
 
   const handleSubmit = async (event) => {
-    event.preventDefault()
+    event.preventDefault();
 
     if (username.length > 0 && password.length > 0 && email.length > 0) {
       if (makeRegister(username, password, email)) {
-        setRegisterMessage("El usuario se ha registrado correctamente.")
+        setRegisterMessage("El usuario se ha registrado correctamente.");
         setRegister(true);
-      }
-      else {
-        setRegisterMessage("El usuario no se ha podido registrar.")
-        console.log("xd")
+      } else {
+        setRegisterMessage("El usuario no se ha podido registrar.");
+        console.log("xd");
       }
     } else {
-      setRegisterMessage("El usuario no se ha podido registrar.")
-      console.log("aa")
+      setRegisterMessage("El usuario no se ha podido registrar.");
+      console.log("aa");
     }
-    setUsername('');
-    setPassword('');
-    setEmail('')
-  }
+    setUsername("");
+    setPassword("");
+    setEmail("");
+  };
 
   return (
     <>
@@ -47,33 +46,58 @@ function Register() {
           <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
             <div className="card border-0 shadow rounded-3 my-5">
               <div className="card-body p-4 p-sm-5">
-                <h5 className="card-title text-center mb-5 fw-light fs-5">Registrarse</h5>
+                <h5 className="card-title text-center mb-5 fw-light fs-5">
+                  Registrarse
+                </h5>
                 <form onSubmit={handleSubmit}>
                   <div className="form-floating mb-3">
-                    <input type="email" className="form-control" id="floatingInput" name="username"
+                    <input
+                      type="email"
+                      className="form-control"
+                      id="floatingInput"
+                      name="username"
                       placeholder="Nombre de usuario"
-                      onChange={(e) => setUsername(e.target.value)} 
-                      value={username}/>
+                      onChange={(e) => setUsername(e.target.value)}
+                      value={username}
+                    />
                     <label htmlFor="floatingInput">Nombre de usuario</label>
                   </div>
                   <div className="form-floating mb-3">
-                    <input type="password" className="form-control" id="floatingPassword" name="password"
+                    <input
+                      type="password"
+                      className="form-control"
+                      id="floatingPassword"
+                      name="password"
                       placeholder="Contraseña"
-                      onChange={(e) => setPassword(e.target.value)} 
-                      value={password}/>
+                      onChange={(e) => setPassword(e.target.value)}
+                      value={password}
+                    />
                     <label htmlFor="floatingPassword">Contraseña</label>
                   </div>
                   <div className="form-floating mb-3">
-                    <input type="email" className="form-control" id="floatingInput"
+                    <input
+                      type="email"
+                      className="form-control"
+                      id="floatingInput"
                       placeholder="name@example.com"
                       onChange={(e) => setEmail(e.target.value)}
-                      value={email}/>
+                      value={email}
+                    />
                     <label htmlFor="floatingInput">Email</label>
                   </div>
                   <div className="d-grid">
-                    <button className="btn btn-primary btn-login text-uppercase fw-bold" onClick={handleSubmit} type="submit">
+                    <button
+                      className="btn btn-primary btn-login text-uppercase fw-bold"
+                      onClick={handleSubmit}
+                      type="submit"
+                    >
                       Registrarse
                     </button>
+                  </div>
+                  <div class="d-grid gap-2">
+                    <p class="text-center">
+                    Ya tienes una cuenta <a href="/login">Logua aqui</a>
+                    </p>
                   </div>
                 </form>
               </div>
@@ -82,7 +106,7 @@ function Register() {
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default Register
+export default Register;

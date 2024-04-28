@@ -32,7 +32,11 @@ export async function getUser(userId) {
 		})
 		return response.data
 	} catch (error) {
-		throw error
+		if (error.response && error.response.status === 403) {
+			return null;
+		  } else {
+			throw error;
+		  }
 	}
 }
 
