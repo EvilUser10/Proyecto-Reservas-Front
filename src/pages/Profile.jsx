@@ -6,15 +6,22 @@ import { useAuth } from "../components/auth/AuthContext";
 import { candelBooking } from "../services/BookingService";
 
 const Profile = () => {
-  const [user, setUser] = useState();
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const { user, isAuthenticated, handleDeleteAccountAuth } = useAuth();
 
+  const [profileData, setProfileData] = useState({
+    name: "",
+    username : "",
+		email: "",
+		role: "",
+		notifications: [],
+		bookings : []
+  });
   const [message, setMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
   const userId = sessionStorage.getItem("userId");
-  const token = sessionStorage.getItem("token");
+  // const token = sessionStorage.getItem("token");
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -23,14 +30,16 @@ const Profile = () => {
          * No es la mejor forma, pero por ahora lo hacemos así.
          * la mejor forma seria crea un variable global dentro de AutContext y exportarlo al resto de los componentes.
          */
-        if (!token) {
+        if (!isAuthenticated) {
           navigate("/login");
         }
-        const userData = await getUser(userId, token);
-        console.log(userData);
+        //const userData = await getUser(userId, token);
+        // No necesitas obtener el ID del usuario de sessionStorage, ya que ahora lo obtienes del contexto de autenticación
+        const userData = await getUser(user.sub); // Usa user.id en lugar de sessionStorage.getItem("userId")
+        
         //Aqui en vez de establecer el usuario aqui, se establecera en Aluthprovides.
         //En vez de establecer los valores localmente en un componente deberia hacerlo globalmente.
-        setUser(userData);
+        setProfileData(userData);
         if (userData) setIsAuthenticated(true);
       } catch (error) {
         setErrorMessage(error?.data);
@@ -48,9 +57,10 @@ const Profile = () => {
       await deleteUser(userId)
         .then((response) => {
           setMessage(response.data);
-          sessionStorage.removeItem("token");
-          sessionStorage.removeItem("userId");
-          sessionStorage.removeItem("userRole");
+          // sessionStorage.removeItem("token");
+          // sessionStorage.removeItem("userId");
+          // sessionStorage.removeItem("userRole");
+          handleDeleteAccountAuth();
           navigate("/");
           window.location.reload();
         })
@@ -75,12 +85,29 @@ const Profile = () => {
         });
     }
   };
+  const handleDeleteNotification = async (bookingId) => {
+    const confirmed = window.confirm(
+      "Estas seguro que quieres borrar la notificación? Esta acción no se podrá deshacer."
+    );
+    if (confirmed) {
+      // await candelBooking(bookingId)
+      //   .then((response) => {
+      //     console.log(response);
+      //     setMessage(response.data);
+      //   })
+      //   .catch((error) => {
+      //     setErrorMessage(error.data);
+      //   });
+    }
+  };
 
+  
   return (
     <div className="container">
       {errorMessage && <p className="text-danger">{errorMessage}</p>}
       {message && <p className="text-danger">{message}</p>}
-      {user ? (
+      
+      {profileData ? (
         <div
           className="card p-5 mt-5"
           style={{ backgroundColor: "whitesmoke" }}
@@ -112,7 +139,7 @@ const Profile = () => {
                           First Name:
                         </label>
                         <div className="col-md-10">
-                          <p className="card-text">{user.name}</p>
+                          <p className="card-text">{profileData.name}</p>
                         </div>
                       </div>
                       <hr />
@@ -122,7 +149,7 @@ const Profile = () => {
                           Email:
                         </label>
                         <div className="col-md-10">
-                          <p className="card-text">{user.email}</p>
+                          <p className="card-text">{profileData.email}</p>
                         </div>
                       </div>
                       <hr />
@@ -133,7 +160,7 @@ const Profile = () => {
                         </label>
                         <div className="col-md-10">
                           <ul className="list-unstyled">
-                            <li className="card-text">{user.role}</li>
+                            <li className="card-text">{profileData.role}</li>
                           </ul>
                         </div>
                       </div>
@@ -144,7 +171,7 @@ const Profile = () => {
 
               <h4 className="card-title text-center">Booking History</h4>
 
-              {user.bookings ? (
+              {profileData.bookings ? (
                 <table className="table table-bordered table-hover shadow">
                   <thead>
                     <tr>
@@ -157,7 +184,7 @@ const Profile = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {user.bookings.map((booking, index) => (
+                    {profileData.bookings.map((booking, index) => (
                       <tr key={index}>
                         <td>{booking.id}</td>
                         <td>
@@ -187,6 +214,56 @@ const Profile = () => {
                     ))}
                   </tbody>
                 </table>
+              ) : (
+                <p>You have not made any bookings yet.</p>
+              )}
+
+              {/* Notificaciones */}
+              
+
+              {profileData.bookings ? (
+                <>
+                <h4 className="card-title text-center">Notificaciones</h4>
+                <table className="table table-bordered table-hover shadow">
+                  <thead>
+                    <tr>
+                      <th scope="col">ID de Notificacion</th>
+                      <th scope="col">Fecha</th>
+                      <th scope="col">Mensaje</th>
+                      <th scope="col">Estado</th>
+                      <th scope="col">Accion</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {profileData.notifications.map((noti, index) => (
+                      <tr key={index}>
+                        <td>{noti.id}</td>
+                        <td>
+                          {moment(noti.date)
+                            .subtract(1, "month")
+                            .format("MMM Do, YYYY")}
+                        </td>
+                        <td>
+                          {noti.message}
+                        </td>
+
+                        <td className="text-success">{noti.is_read}</td>
+                        <td>
+                          <div className="mx-2">
+                            <button
+                              className="btn btn-danger btn-sm"
+                              onClick={() => handleDeleteNotification(noti.id)}
+                            >
+                              borrar
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                </>
+                
               ) : (
                 <p>You have not made any bookings yet.</p>
               )}

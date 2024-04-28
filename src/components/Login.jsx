@@ -73,6 +73,9 @@ function Login({iniciarSesion}) {
                     <button className="btn btn-primary btn-login text-uppercase fw-bold" onClick={handleSubmit} type="submit">Iniciar
                       Sesión</button>
                   </div>
+                  <div class="d-grid gap-2">
+                      <p class="text-center">No estas registrado?  <a  href="/register">Registrase aquí</a></p>
+                  </div>
                 </form>
               </div>
             </div>
