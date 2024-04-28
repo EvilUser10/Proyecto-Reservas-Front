@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Card from "./Card";
 import Browser from "./Browser";
+import "../styles/hotels.css";
 import { listHotels, listHotelsByInput } from "../services/HotelService";
 
-function Hotels({showSearchInput = true}) {
+function Hotels({showSearchInput = true, title = "Tus hoteles favoritos, al alcance de tu mano"}) {
   const [hotels, setHotels] = useState([]);
 
   useEffect(() => {
@@ -36,9 +37,9 @@ function Hotels({showSearchInput = true}) {
       {showSearchInput && (
               <Browser onSearch={handleSearch} />
       )}
-      <div className="container-fluid px-xl-5 bg-warning">
+      <div className="container-fluid px-xl-5 our-hotels">
         <div className="container py-3 ">
-          <h1 className="py-4">Tus hoteles favoritos, al alcance de tu mano</h1>
+          <h2 className="py-4 titlePage">{title}</h2>
           <div className="row row-cols-1 row-cols-md-3 g-4">
             {hotels.map((hotel) => (
               <Card

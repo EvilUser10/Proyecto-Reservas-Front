@@ -46,9 +46,10 @@ function BookingForm() {
                       </div>
                     </div>
                   </div>
-                  <button type="submit" className="btn btn-primary">
+                  <a type="submit" className="btn btn-primary" href={`/hotels/`}> 
                     Reservar
-                  </button>
+                  </a>
+                  
                 </form>
               </div>
             </div>

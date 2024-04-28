@@ -6,6 +6,7 @@ import Login from "./components/Login";
 import Hotels from "./components/Hotels";
 import Hotel from "./components/Hotel";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 import Register from "./components/Register";
 import Profile from "./pages/Profile";
 import { AuthProvider } from "./components/auth/AuthContext";
@@ -30,6 +31,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
           {/* </Route> */}
         </Routes>
+        <Footer />
       </BrowserRouter>
     </AuthProvider>
   );

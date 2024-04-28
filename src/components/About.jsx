@@ -11,7 +11,7 @@ function About() {
   return (
     <>
       <div className="bg-light">
-        <div className="container py-5">
+        <div className="container py-5 mp-5">
           <div className="row h-100 align-items-center py-5">
             <div className="col-lg-6">
               <h1 className="display-4">Sobre Nosotros</h1>
@@ -26,9 +26,9 @@ function About() {
         </div>
       </div>
 
-
+{/* 
       <div className="bg-white py-5"></div>
-      <div className="container py-5"></div>
+      <div className="container py-5"></div> */}
 
       <RightCard title={"Nuestra Misión"} information={"En [Nombre de la Empresa], nuestra misión es crear momentos inolvidables para nuestros usuarios," +
         "ofreciendo un servicio personalizado y atención excepcional en un entorno acogedor y relajante." +

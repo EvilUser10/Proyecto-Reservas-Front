@@ -10,6 +10,10 @@
   margin: 0
 }
 
+h2.titlePage{
+  font-size: 32px;
+  text-transform: uppercase;
+}
 /* .logo {
   height: 6em;
   padding: 1.5em;
