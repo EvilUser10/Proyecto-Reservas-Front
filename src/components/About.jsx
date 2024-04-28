@@ -16,7 +16,7 @@ function About() {
             <div className="col-lg-6">
               <h1 className="display-4">Sobre Nosotros</h1>
               <p className="lead text-muted">
-                En [Nombre de la Empresa], nos enorgullece ofrecer una experiencia única y memorable para todos nuestros huéspedes.
+                En HotelHive, nos enorgullece ofrecer una experiencia única y memorable para todos nuestros huéspedes.
                 Nuestra empresa se dedica a proporcionar servicios de alojamiento excepcionales,
                 combinando elegancia, comodidad y hospitalidad para satisfacer las necesidades de cada uno de nuestros clientes.
               </p>
@@ -30,7 +30,7 @@ function About() {
       <div className="bg-white py-5"></div>
       <div className="container py-5"></div> */}
 
-      <RightCard title={"Nuestra Misión"} information={"En [Nombre de la Empresa], nuestra misión es crear momentos inolvidables para nuestros usuarios," +
+      <RightCard title={"Nuestra Misión"} information={"En HotelHive, nuestra misión es crear momentos inolvidables para nuestros usuarios," +
         "ofreciendo un servicio personalizado y atención excepcional en un entorno acogedor y relajante." +
         "Nos esforzamos por superar las expectativas de nuestros clientes y convertir cada estancia en una experiencia" +
         "única y memorable."}
@@ -41,7 +41,7 @@ function About() {
         " Trabajamos incansablemente para mantener los más altos estándares de excelencia y garantizar la satisfacción total de nuestros clientes."}
         img={quality} />
 
-      <RightCard title={"Responsabilidad Social"} information={"En [Nombre de la Empresa], nos comprometemos a ser una empresa social y ambientalmente responsable. " +
+      <RightCard title={"Responsabilidad Social"} information={"En HotelHive, nos comprometemos a ser una empresa social y ambientalmente responsable. " +
             "Nos esforzamos por minimizar nuestro impacto en el medio ambiente y contribuir positivamente a las comunidades en las que operamos. " +
             "Trabajamos en estrecha colaboración con organizaciones locales para apoyar iniciativas sociales y ambientales que beneficien a nuestros " +
             "clientes y al entorno que nos rodea."}

@@ -20,32 +20,41 @@ function Rooms({ id }) {
     return (
         <>
             <div className=''>
-                {roomList.map((room) => (
-                    <section key={room.id}>
-                        <div className="container py-3 ">
-                            <div className="card">
-                                <div className="row ">
-                                    <div className="col-md-4">
-                                        <img src="https://source.unsplash.com/random/200%C3%97200/?hotel_room" className="w-100" />
-                                    </div>
-                                    <div className="col-md-8 px-3">
-                                        <div className="card-block px-3 py-4">
-                                            <h3>{room.description}</h3>
-                                            <h4>Habitación disponible</h4>
-                                            <h3>{room.price} €</h3>
-                                            <Booking id={id} roomId={room.id} />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className=''>
-                                <section className='d-flex justify-content-center py-2'>
-                                    
-                                </section>
-                            </div>
-                            </div>
-                        </div>
-                    </section>
-                ))}
+            {roomList && roomList.length > 0 ? (
+    roomList.map((room) => (
+        <section key={room.id}>
+            <div className="container py-3 ">
+            <div className="card">
+    <div className="row">
+        <div className="col-md-4">
+            <img src="https://source.unsplash.com/random/200%C3%97200/?hotel_room" className="w-100" />
+        </div>
+        <div className="col-md-8 px-3">
+            <div className="card-block px-3 py-4">
+                <div className="text-center"> {/* Añade esta línea */}
+                    <h3>{room.description}</h3>
+                    <h4>Habitación disponible</h4>
+                    <h3>{room.price} €</h3>
+                    <Booking id={id} roomId={room.id} />
+                </div> {/* Y cierra aquí */}
+            </div>
+        </div>
+    </div>
+    <div className=''>
+        <section className='d-flex justify-content-center py-2'>
+
+        </section>
+    </div>
+</div>
+
+            </div>
+        </section>
+    ))
+) : (
+    <div className="container py-3">
+        <h3>No hay habitaciones disponibles.</h3>
+    </div>
+)}
             </div >
         </>
     )

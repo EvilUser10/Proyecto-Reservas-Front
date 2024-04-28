@@ -27,7 +27,7 @@ function Inicio() {
         <RightCard
           title={"Sobre Nosotros"}
           information={
-            "En [Nombre de la Empresa], nos enorgullece ofrecer una experiencia única y memorable para todos nuestros huéspedes. Nuestra empresa se dedica a proporcionar servicios de alojamiento excepcionales, combinando elegancia, comodidad y hospitalidad para satisfacer las necesidades de cada uno de nuestros clientes."
+            "En HotelHive, nos enorgullece ofrecer una experiencia única y memorable para todos nuestros huéspedes. Nuestra empresa se dedica a proporcionar servicios de alojamiento excepcionales, combinando elegancia, comodidad y hospitalidad para satisfacer las necesidades de cada uno de nuestros clientes."
           }
           img={
             "https://www.ionos.es/digitalguide/fileadmin/DigitalGuide/Teaser/ueber-uns-t.jpg"

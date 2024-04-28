@@ -19,10 +19,13 @@ function Booking({ id, roomId }) {
 
     if (arrive.length > 0 && comingOut.length > 0) {
       const response = makeRegister(id, bookingModel);
-      if (response) {
+      console.log(reponse.status)
+      if (response.status == 200) {
         setBookingMessage("Se ha realizado la reserva satisfactoriamente.")
       }
-      setBookingMessage("No se ha podido realizar la reserva, debes iniciar sesión")
+      else if(response.status != 200) {
+        setBookingMessage("No se ha podido realizar la reserva")
+      }
     } else {
       setBookingMessage("Los datos no pueden ser vacíos.")
     }
@@ -31,7 +34,7 @@ function Booking({ id, roomId }) {
   const today = new Date().toISOString().split('T')[0];
   return (
     <>
-      <form className='card mw-360px'>
+      <form className='card'>
         {bookingMessage.length > 0 && (
           <div className="alert alert-danger" role="alert">
             {bookingMessage}

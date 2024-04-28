@@ -13,9 +13,9 @@ export async function getUserProfile(userId) {
 }
 
 /* This isthe function to delete a user */
-export async function deleteUser(userId) {
+export async function deleteUser(username) {
 	try {
-		const response = await api.delete(`/users/delete/${userId}`, {
+		const response = await api.delete(`api/users/${username}`, {
 			headers: getHeader()
 		})
 		return response.data

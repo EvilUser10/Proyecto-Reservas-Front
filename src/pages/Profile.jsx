@@ -13,7 +13,7 @@ const Profile = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
-  const userId = sessionStorage.getItem("userId");
+  const username = sessionStorage.getItem("userId");
   const token = sessionStorage.getItem("token");
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const Profile = () => {
         if (!token) {
           navigate("/login");
         }
-        const userData = await getUser(userId, token);
+        const userData = await getUser(username, token);
         console.log(userData);
         //Aqui en vez de establecer el usuario aqui, se establecera en Aluthprovides.
         //En vez de establecer los valores localmente en un componente deberia hacerlo globalmente.
@@ -45,14 +45,14 @@ const Profile = () => {
       "Are you sure you want to delete your account? This action cannot be undone."
     );
     if (confirmed) {
-      await deleteUser(userId)
+      await deleteUser(username)
         .then((response) => {
           setMessage(response.data);
           sessionStorage.removeItem("token");
           sessionStorage.removeItem("userId");
           sessionStorage.removeItem("userRole");
-          navigate("/");
-          window.location.reload();
+          // navigate("/");
+          // window.location.reload();
         })
         .catch((error) => {
           setErrorMessage(error.data);
@@ -69,6 +69,7 @@ const Profile = () => {
         .then((response) => {
           console.log(response);
           setMessage(response.data);
+          location.reload();
         })
         .catch((error) => {
           setErrorMessage(error.data);
@@ -109,10 +110,10 @@ const Profile = () => {
                     <div className="card-body">
                       <div className="form-group row">
                         <label className="col-md-2 col-form-label fw-bold">
-                          First Name:
+                          username:
                         </label>
                         <div className="col-md-10">
-                          <p className="card-text">{user.name}</p>
+                          <p className="card-text">{user.username}</p>
                         </div>
                       </div>
                       <hr />
